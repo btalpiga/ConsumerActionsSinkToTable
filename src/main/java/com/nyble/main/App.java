@@ -1,5 +1,6 @@
 package com.nyble.main;
 
+import com.nyble.topics.TopicObjectsFactory;
 import com.nyble.topics.consumerActions.ConsumerActionsValue;
 import com.nyble.util.DBUtil;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -58,11 +59,11 @@ public class App {
                 try{
                     records.forEach(record ->{
                         try{
-                            ConsumerActionsValue cav = ConsumerActionsValue.fromJson(record.value());
-                            ps.setInt(1, cav.getId());
-                            ps.setInt(2, cav.getSystemId());
-                            ps.setInt(3, cav.getConsumerId());
-                            ps.setInt(4, cav.getActionId());
+                            ConsumerActionsValue cav = (ConsumerActionsValue) TopicObjectsFactory.fromJson(record.value(), ConsumerActionsValue.class);
+                            ps.setInt(1, Integer.parseInt(cav.getId()));
+                            ps.setInt(2, Integer.parseInt(cav.getSystemId()));
+                            ps.setInt(3, Integer.parseInt(cav.getConsumerId()));
+                            ps.setInt(4, Integer.parseInt(cav.getActionId()));
                             PGobject jsonb = new PGobject();
                             jsonb.setType("jsonb");
                             jsonb.setValue(cav.getPayloadJson().getRaw());
