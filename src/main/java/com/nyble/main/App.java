@@ -10,6 +10,8 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.postgresql.util.PGobject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,6 +20,7 @@ import java.util.Collections;
 import java.sql.Date;
 import java.util.Properties;
 
+@SpringBootApplication(scanBasePackages = {"com.nyble.rest"})
 public class App {
 
     final static String KAFKA_CLUSTER_BOOTSTRAP_SERVERS = "10.100.1.17:9093";
@@ -35,6 +38,7 @@ public class App {
 
 
     public static void main(String[] args){
+        SpringApplication.run(App.class, args);
 
         logger.debug("Start new consumer for group {}", groupId);
         final String query = "INSERT INTO "+ "consumer_actions"+"\n" +
@@ -42,6 +46,7 @@ public class App {
                 "values (?, ?, ?, ?, ?, ?, ?)";
         final String rmcTopic = "consumer-actions-rmc";
         final String rrpTopic = "consumer-actions-rrp";
+
         new Thread(()-> consumeTopic(rmcTopic, query)).start();
         new Thread(()-> consumeTopic(rrpTopic, query)).start();
 
@@ -59,6 +64,7 @@ public class App {
                 try{
                     records.forEach(record ->{
                         try{
+                            logger.debug("Record value: {}", record.value());
                             ConsumerActionsValue cav = (ConsumerActionsValue) TopicObjectsFactory.fromJson(record.value(), ConsumerActionsValue.class);
                             ps.setInt(1, Integer.parseInt(cav.getId()));
                             ps.setInt(2, Integer.parseInt(cav.getSystemId()));
