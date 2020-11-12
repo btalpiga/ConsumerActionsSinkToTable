@@ -1,23 +1,15 @@
 package com.nyble.main;
 
-import com.nyble.topics.TopicObjectsFactory;
-import com.nyble.topics.consumerActions.ConsumerActionsValue;
-import com.nyble.util.DBUtil;
+import com.nyble.facades.kafkaConsumer.KafkaConsumerFacade;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.postgresql.util.PGobject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.time.Duration;
 import java.util.Collections;
-import java.sql.Date;
 import java.util.Properties;
 
 @SpringBootApplication(scanBasePackages = {"com.nyble.rest"})
@@ -32,8 +24,7 @@ public class App {
         consumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProps.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
-        consumerProps.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-        consumerProps.put("max.poll.records", 500);
+        consumerProps.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 500);
     }
 
 
@@ -41,54 +32,17 @@ public class App {
         SpringApplication.run(App.class, args);
 
         logger.debug("Start new consumer for group {}", groupId);
-        final String query = "INSERT INTO "+ "consumer_actions"+"\n" +
-                "(id, system_id, consumer_id, action_id, payload_json, external_system_date, local_system_date) \n" +
-                "values (?, ?, ?, ?, ?, ?, ?)";
         final String rmcTopic = "consumer-actions-rmc";
         final String rrpTopic = "consumer-actions-rrp";
 
-        new Thread(()-> consumeTopic(rmcTopic, query)).start();
-        new Thread(()-> consumeTopic(rrpTopic, query)).start();
+        KafkaConsumerFacade<String, String> rmcActionsConsumer = new KafkaConsumerFacade<>(consumerProps,
+                1, KafkaConsumerFacade.PROCESSING_TYPE_BATCH);
+        rmcActionsConsumer.subscribe(Collections.singletonList(rmcTopic));
+        rmcActionsConsumer.startPolling(Duration.ofSeconds(10), RecordProcessorImpl.class);
 
-    }
-
-    public static void consumeTopic(String topic, String query){
-        KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(consumerProps);
-        kafkaConsumer.subscribe(Collections.singletonList(topic));
-        logger.debug("Consumers connected to topic {}", topic);
-        try(Connection conn = DBUtil.getInstance().getConnection();
-            PreparedStatement ps = conn.prepareStatement(query)){
-            while(true){
-                ConsumerRecords<String, String> records = kafkaConsumer.poll(1000*10);
-                logger.info("Finished poll, records size = {}",records.count());
-                try{
-                    records.forEach(record ->{
-                        try{
-                            logger.debug("Record value: {}", record.value());
-                            ConsumerActionsValue cav = (ConsumerActionsValue) TopicObjectsFactory.fromJson(record.value(), ConsumerActionsValue.class);
-                            ps.setInt(1, Integer.parseInt(cav.getId()));
-                            ps.setInt(2, Integer.parseInt(cav.getSystemId()));
-                            ps.setInt(3, Integer.parseInt(cav.getConsumerId()));
-                            ps.setInt(4, Integer.parseInt(cav.getActionId()));
-                            PGobject jsonb = new PGobject();
-                            jsonb.setType("jsonb");
-                            jsonb.setValue(cav.getPayloadJson().getRaw());
-                            ps.setObject(5, jsonb);
-                            ps.setDate(6, new Date(Long.parseLong(cav.getExternalSystemDate())));
-                            ps.setDate(7, new Date(Long.parseLong(cav.getLocalSystemDate())));
-                            ps.executeUpdate();
-                            logger.debug("Inserted action to table");
-                        } catch (SQLException e) {
-                            logger.error(e.getMessage(), e);
-                        }
-
-                    });
-                }catch(Exception e){
-                    logger.error(e.getMessage(), e);
-                }
-            }
-        } catch (SQLException e) {
-            logger.error(e.getMessage(), e);
-        }
+        KafkaConsumerFacade<String, String> rrpActionsConsumer = new KafkaConsumerFacade<>(consumerProps,
+                1, KafkaConsumerFacade.PROCESSING_TYPE_BATCH);
+        rrpActionsConsumer.subscribe(Collections.singletonList(rrpTopic));
+        rrpActionsConsumer.startPolling(Duration.ofSeconds(10), RecordProcessorImpl.class);
     }
 }

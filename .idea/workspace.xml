@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4a765dc-554a-4539-aa47-ff728ab141c8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/nyble/rest/Server.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/nyble/rest/resources/LogLevelRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/nyble/rest/resources/Response.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logs/ConsumerActionsSinkToTable.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/nyble/main/RecordProcessorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/nyble/main/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nyble/main/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,13 +25,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1huOdlKueg0uK7MPWVUPIJGj2mL" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/nyble/rest2" />
@@ -44,7 +45,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="Maven.package">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.nyble.main.App" />
       <module name="ConsumerActionsSinkToTable" />
@@ -113,13 +114,55 @@
       <option name="presentableId" value="Default" />
       <updated>1600857599346</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added web server dependency.">
+      <created>1604317978416</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1604317978416</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added web server dependency.">
+      <created>1604318485342</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1604318485342</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added spring boot fat jar builder">
+      <created>1604320273502</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1604320273502</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Added web server dependency." />
+    <MESSAGE value="Added spring boot fat jar builder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added spring boot fat jar builder" />
   </component>
   <component name="WindowStateProjectService">
     <state x="312" y="217" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600859111467">
       <screen x="67" y="27" width="3773" height="1053" />
     </state>
     <state x="312" y="217" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.3773.1053@67.27.3773.1053" timestamp="1600859111467" />
+    <state x="746" y="206" width="374" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1605116244796">
+      <screen x="67" y="27" width="3773" height="1053" />
+    </state>
+    <state x="746" y="206" width="374" height="562" key="#com.intellij.ide.util.MemberChooser/67.27.3773.1053@67.27.3773.1053" timestamp="1605116244796" />
+    <state x="917" y="270" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605172249960">
+      <screen x="67" y="27" width="3773" height="1053" />
+    </state>
+    <state x="917" y="270" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.3773.1053@67.27.3773.1053" timestamp="1605172249960" />
+    <state x="1694" y="185" width="1197" height="807" key="CommitChangelistDialog2" timestamp="1604320273409">
+      <screen x="67" y="27" width="3773" height="1053" />
+    </state>
+    <state x="1694" y="185" width="1197" height="807" key="CommitChangelistDialog2/67.27.3773.1053@67.27.3773.1053" timestamp="1604320273409" />
     <state width="447" height="466" key="DebuggerActiveHint" timestamp="1604317309315">
       <screen x="67" y="27" width="3773" height="1053" />
     </state>
@@ -128,41 +171,49 @@
       <screen x="67" y="27" width="3773" height="1053" />
     </state>
     <state x="1824" y="300" width="424" height="484" key="FileChooserDialogImpl/67.27.3773.1053@67.27.3773.1053" timestamp="1604313930350" />
-    <state width="1406" height="213" key="GridCell.Tab.0.bottom" timestamp="1604317924004">
+    <state width="1406" height="213" key="GridCell.Tab.0.bottom" timestamp="1605174211508">
       <screen x="67" y="27" width="3773" height="1053" />
     </state>
-    <state width="1406" height="213" key="GridCell.Tab.0.bottom/67.27.3773.1053@67.27.3773.1053" timestamp="1604317924004" />
-    <state width="1406" height="213" key="GridCell.Tab.0.center" timestamp="1604317924000">
+    <state width="1406" height="213" key="GridCell.Tab.0.bottom/67.27.3773.1053@67.27.3773.1053" timestamp="1605174211508" />
+    <state width="1406" height="213" key="GridCell.Tab.0.center" timestamp="1605174211506">
       <screen x="67" y="27" width="3773" height="1053" />
     </state>
-    <state width="1406" height="213" key="GridCell.Tab.0.center/67.27.3773.1053@67.27.3773.1053" timestamp="1604317924000" />
-    <state width="1406" height="213" key="GridCell.Tab.0.left" timestamp="1604317923998">
+    <state width="1406" height="213" key="GridCell.Tab.0.center/67.27.3773.1053@67.27.3773.1053" timestamp="1605174211506" />
+    <state width="1406" height="213" key="GridCell.Tab.0.left" timestamp="1605174211506">
       <screen x="67" y="27" width="3773" height="1053" />
     </state>
-    <state width="1406" height="213" key="GridCell.Tab.0.left/67.27.3773.1053@67.27.3773.1053" timestamp="1604317923998" />
-    <state width="1406" height="213" key="GridCell.Tab.0.right" timestamp="1604317924002">
+    <state width="1406" height="213" key="GridCell.Tab.0.left/67.27.3773.1053@67.27.3773.1053" timestamp="1605174211506" />
+    <state width="1406" height="213" key="GridCell.Tab.0.right" timestamp="1605174211507">
       <screen x="67" y="27" width="3773" height="1053" />
     </state>
-    <state width="1406" height="213" key="GridCell.Tab.0.right/67.27.3773.1053@67.27.3773.1053" timestamp="1604317924002" />
-    <state width="1406" height="266" key="GridCell.Tab.1.bottom" timestamp="1604317361728">
+    <state width="1406" height="213" key="GridCell.Tab.0.right/67.27.3773.1053@67.27.3773.1053" timestamp="1605174211507" />
+    <state width="1406" height="266" key="GridCell.Tab.1.bottom" timestamp="1604320978395">
       <screen x="67" y="27" width="3773" height="1053" />
     </state>
-    <state width="1406" height="266" key="GridCell.Tab.1.bottom/67.27.3773.1053@67.27.3773.1053" timestamp="1604317361728" />
-    <state width="1406" height="266" key="GridCell.Tab.1.center" timestamp="1604317361727">
+    <state width="1406" height="266" key="GridCell.Tab.1.bottom/67.27.3773.1053@67.27.3773.1053" timestamp="1604320978395" />
+    <state width="1406" height="266" key="GridCell.Tab.1.center" timestamp="1604320978392">
       <screen x="67" y="27" width="3773" height="1053" />
     </state>
-    <state width="1406" height="266" key="GridCell.Tab.1.center/67.27.3773.1053@67.27.3773.1053" timestamp="1604317361727" />
-    <state width="1406" height="266" key="GridCell.Tab.1.left" timestamp="1604317361727">
+    <state width="1406" height="266" key="GridCell.Tab.1.center/67.27.3773.1053@67.27.3773.1053" timestamp="1604320978392" />
+    <state width="1406" height="266" key="GridCell.Tab.1.left" timestamp="1604320978390">
       <screen x="67" y="27" width="3773" height="1053" />
     </state>
-    <state width="1406" height="266" key="GridCell.Tab.1.left/67.27.3773.1053@67.27.3773.1053" timestamp="1604317361727" />
-    <state width="1406" height="266" key="GridCell.Tab.1.right" timestamp="1604317361727">
+    <state width="1406" height="266" key="GridCell.Tab.1.left/67.27.3773.1053@67.27.3773.1053" timestamp="1604320978390" />
+    <state width="1406" height="266" key="GridCell.Tab.1.right" timestamp="1604320978393">
       <screen x="67" y="27" width="3773" height="1053" />
     </state>
-    <state width="1406" height="266" key="GridCell.Tab.1.right/67.27.3773.1053@67.27.3773.1053" timestamp="1604317361727" />
+    <state width="1406" height="266" key="GridCell.Tab.1.right/67.27.3773.1053@67.27.3773.1053" timestamp="1604320978393" />
+    <state x="1893" y="324" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1604320286900">
+      <screen x="67" y="27" width="3773" height="1053" />
+    </state>
+    <state x="1893" y="324" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.3773.1053@67.27.3773.1053" timestamp="1604320286900" />
     <state x="1686" y="273" width="710" height="538" key="find.popup" timestamp="1604051655088">
       <screen x="67" y="27" width="3773" height="1053" />
     </state>
     <state x="1686" y="273" width="710" height="538" key="find.popup/67.27.3773.1053@67.27.3773.1053" timestamp="1604051655088" />
+    <state x="1851" y="382" width="884" height="413" key="git4idea.merge.GitPullDialog" timestamp="1604318495105">
+      <screen x="67" y="27" width="3773" height="1053" />
+    </state>
+    <state x="1851" y="382" width="884" height="413" key="git4idea.merge.GitPullDialog/67.27.3773.1053@67.27.3773.1053" timestamp="1604318495105" />
   </component>
 </project>
