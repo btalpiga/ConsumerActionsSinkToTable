@@ -11,10 +11,7 @@ import org.postgresql.util.PGobject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class RecordProcessorImpl implements RecordProcessor<String, String> {
 
@@ -60,8 +57,8 @@ public class RecordProcessorImpl implements RecordProcessor<String, String> {
             jsonb.setType("jsonb");
             jsonb.setValue(cav.getPayloadJson().getRaw());
             ps.setObject(5, jsonb);
-            ps.setDate(6, new Date(Long.parseLong(cav.getExternalSystemDate())));
-            ps.setDate(7, new Date(Long.parseLong(cav.getLocalSystemDate())));
+            ps.setTimestamp(6, new Timestamp(Long.parseLong(cav.getExternalSystemDate())));
+            ps.setTimestamp(7, new Timestamp(Long.parseLong(cav.getLocalSystemDate())));
             ps.executeUpdate();
             logger.debug("Inserted action to table");
         } catch (SQLException e) {
